@@ -1,0 +1,210 @@
+{
+  "theme": "back_to_school",
+  "colors": {
+    "primary": "#FFAB91",
+    "background": "#FFF9F4",
+    "cardBackground": "#FFFFFF",
+    "text": "#3E2723",
+    "subtext": "#8D6E63",
+    "border": "#FFCCBC",
+    "accent": "#FF8A65"
+  },
+  "layout": [
+    {
+      "type": "BANNER_HERO",
+      "id": "banner_back_to_school",
+      "title": "Baby's First Day Out!",
+      "subtitle": "Get flat 40% off on Nursery & Daycare Essentials",
+      "imageUrl": "https://images.unsplash.com/photo-1540479859555-17af45c78602?w=800&auto=format&fit=crop",
+      "action": {
+        "type": "OPEN_LINK",
+        "payload": {
+          "url": "https://kiddo-app.com/sales/nursery"
+        }
+      }
+    },
+    {
+      "type": "PRODUCT_GRID_2X2",
+      "id": "grid_nursery_essentials",
+      "title": "Nursery Essentials 🍼",
+      "products": [
+        {
+          "id": "prod_sippy_cup",
+          "name": "Spill-Proof Sippy Cup",
+          "price": 299,
+          "originalPrice": 499,
+          "imageUrl": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&auto=format&fit=crop",
+          "category": "Feeding",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_sippy_cup"
+            }
+          }
+        },
+        {
+          "id": "prod_bib_set",
+          "name": "Organic Cotton Bib Set",
+          "price": 450,
+          "originalPrice": 599,
+          "imageUrl": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&auto=format&fit=crop",
+          "category": "Apparel",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_bib_set"
+            }
+          }
+        },
+        {
+          "id": "prod_diaper_bag",
+          "name": "Premium Diaper Bag",
+          "price": 1299,
+          "originalPrice": 1999,
+          "imageUrl": "https://images.unsplash.com/photo-1540479859555-17af45c78602?w=400&auto=format&fit=crop",
+          "category": "Bags",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_diaper_bag"
+            }
+          }
+        },
+        {
+          "id": "prod_silicone_bowl",
+          "name": "Silicone Feeding Bowl",
+          "price": 399,
+          "originalPrice": 550,
+          "imageUrl": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&auto=format&fit=crop",
+          "category": "Feeding",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_silicone_bowl"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "DYNAMIC_COLLECTION",
+      "id": "coll_baby_food",
+      "title": "Healthy Baby Food 🍎",
+      "products": [
+        {
+          "id": "prod_banana_puree",
+          "name": "Organic Banana Puree",
+          "price": 99,
+          "originalPrice": 120,
+          "imageUrl": "https://images.unsplash.com/photo-1620023405230-016ce22a1b52?w=400&auto=format&fit=crop",
+          "category": "Baby Food",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_banana_puree"
+            }
+          }
+        },
+        {
+          "id": "prod_teething_wafers",
+          "name": "Apple Teething Wafers",
+          "price": 149,
+          "originalPrice": 180,
+          "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&auto=format&fit=crop",
+          "category": "Baby Food",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_teething_wafers"
+            }
+          }
+        },
+        {
+          "id": "prod_sweet_potato_puffs",
+          "name": "Sweet Potato Puffs",
+          "price": 180,
+          "originalPrice": 220,
+          "imageUrl": "https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=400&auto=format&fit=crop",
+          "category": "Baby Food",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_sweet_potato_puffs"
+            }
+          }
+        },
+        {
+          "id": "prod_yogurt_melts",
+          "name": "Yogurt Melts (Berry)",
+          "price": 120,
+          "originalPrice": 150,
+          "imageUrl": "https://images.unsplash.com/photo-1599490659213-e2b9527b0876?w=400&auto=format&fit=crop",
+          "category": "Baby Food",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_yogurt_melts"
+            }
+          }
+        },
+        {
+          "id": "prod_fruit_squeeze",
+          "name": "Fruit Squeeze Pouch",
+          "price": 85,
+          "originalPrice": 110,
+          "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&auto=format&fit=crop",
+          "category": "Baby Food",
+          "action": {
+            "type": "ADD_TO_CART",
+            "payload": {
+              "productId": "prod_fruit_squeeze"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "DYNAMIC_COLLECTION",
+      "id": "coll_baby_care",
+      "title": "Baby Care Basics 👶",
+      "products": [
+        {
+          "id": "prod_wipes",
+          "name": "Gentle Baby Wipes (Pack of 3)",
+          "price": 250,
+          "originalPrice": 300,
+          "imageUrl": "https://images.unsplash.com/photo-1620023405230-016ce22a1b52?w=400&auto=format&fit=crop",
+          "category": "Care",
+          "action": { "type": "ADD_TO_CART", "payload": { "productId": "prod_wipes" } }
+        },
+        {
+          "id": "prod_diapers",
+          "name": "Premium Baby Diapers",
+          "price": 899,
+          "originalPrice": 1200,
+          "imageUrl": "https://images.unsplash.com/photo-1540479859555-17af45c78602?w=400&auto=format&fit=crop",
+          "category": "Care",
+          "action": { "type": "ADD_TO_CART", "payload": { "productId": "prod_diapers" } }
+        },
+        {
+          "id": "prod_nipples",
+          "name": "Silicone Bottle Nipples (2-Pack)",
+          "price": 199,
+          "originalPrice": 250,
+          "imageUrl": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&auto=format&fit=crop",
+          "category": "Feeding",
+          "action": { "type": "ADD_TO_CART", "payload": { "productId": "prod_nipples" } }
+        },
+        {
+          "id": "prod_lotion",
+          "name": "Soothing Baby Lotion",
+          "price": 350,
+          "originalPrice": 450,
+          "imageUrl": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&auto=format&fit=crop",
+          "category": "Care",
+          "action": { "type": "ADD_TO_CART", "payload": { "productId": "prod_lotion" } }
+        }
+      ]
+    }
+  ]
+}
