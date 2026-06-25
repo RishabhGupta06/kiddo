@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image, SafeAreaView, Modal } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image, SafeAreaView, Modal, Platform } from 'react-native';
 import { useCartStore, globalAllProducts } from '../store';
 import { useTheme } from '../ThemeContext';
 import { X, Minus, Plus } from 'lucide-react-native';
@@ -85,7 +85,10 @@ export const CartScreen: React.FC<CartScreenProps> = ({ isOpen, onClose }) => {
 
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    width: '100%',
+    maxWidth: Platform.OS === 'web' ? 480 : '100%',
+    alignSelf: 'center',
     zIndex: 100,
   },
   header: {

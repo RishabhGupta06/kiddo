@@ -91,7 +91,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => 
 
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    width: '100%',
+    maxWidth: Platform.OS === 'web' ? 480 : '100%',
+    alignSelf: 'center',
     zIndex: 100,
   },
   keyboardView: {
