@@ -72,8 +72,34 @@ const themePayloads: Record<ThemeType, { colors: ThemeColors; layout: ComponentD
     },
     layout: [
       {
+        type: 'FULL_SCREEN_OVERLAY',
+        id: 'overlay_summer_campaign',
+        animationUrl: 'https://assets.example.com/water_summer.json'
+      },
+      {
         type: 'BANNER_HERO',
         id: 'banner_summer',
+        title: 'Baby\'s First Summer!',
+        subtitle: 'Splashing water toys and pool floats for infants.',
+        imageUrl: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&auto=format&fit=crop',
+        action: {
+          type: 'OPEN_LINK',
+          payload: {
+            url: 'https://kiddo-app.com/sales/summer-baby'
+          }
+        }
+      },
+      {
+        type: 'PRODUCT_GRID_2X2',
+        id: 'grid_water_toys',
+        title: 'Infant Water Toys 🧸',
+        products: [
+          {
+            id: "prod_baby_float",
+            name: "Shaded Infant Pool Float",
+            price: 599,
+            originalPrice: 850,
+            imageUrl: "https://images.unsplash.com/photo-1537655780520-1e392edd816a?w=400&auto=format&fit=crop",
             category: "Pool Essentials",
             action: {
               type: "ADD_TO_CART",
