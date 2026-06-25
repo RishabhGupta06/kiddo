@@ -23,12 +23,15 @@ interface CartState {
   colors: ThemeColors;
   layout: ComponentData[];
   couponDiscount: number; // State to track coupon discounts dynamically
+  isLoggedIn: boolean;
   
   // Actions
   addToCart: (productId: string) => void;
   removeFromCart: (productId: string) => void;
   setTheme: (theme: ThemeType) => void;
   handleAction: (action: Action) => void;
+  login: () => void;
+  logout: () => void;
 }
 
 // Predefined mock data for each theme to show Server-Driven UI updates
@@ -358,7 +361,6 @@ export const useCartStore = create<CartState>((set, get) => ({
   cart: {},
   theme: mockData.theme as ThemeType,
   colors: mockData.colors as ThemeColors,
-  // Add overlay to startup layout
   layout: [
     {
       type: 'FULL_SCREEN_OVERLAY',
@@ -368,6 +370,7 @@ export const useCartStore = create<CartState>((set, get) => ({
     ...(mockData.layout as ComponentData[])
   ],
   couponDiscount: 0,
+  isLoggedIn: false,
 
   addToCart: (productId: string) => {
     console.log(`[useCartStore] Incrementing quantity for product: ${productId}`);
@@ -408,6 +411,9 @@ export const useCartStore = create<CartState>((set, get) => ({
       });
     }
   },
+
+  login: () => set({ isLoggedIn: true }),
+  logout: () => set({ isLoggedIn: false }),
 
   handleAction: (action: Action) => {
     console.log(`[Action Traffic Cop] Handling action: ${JSON.stringify(action)}`);

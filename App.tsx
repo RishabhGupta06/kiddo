@@ -21,6 +21,7 @@ import BannerHero from './components/BannerHero';
 import ProductGrid2x2 from './components/ProductGrid2x2';
 import DynamicCollection from './components/DynamicCollection';
 import CartScreen from './components/CartScreen';
+import LoginScreen from './components/LoginScreen';
 
 // Animations
 import FallingPencilsAnimation from './components/animations/FallingPencilsAnimation';
@@ -134,10 +135,12 @@ const FullScreenOverlayRenderer: React.FC<{ node?: ComponentData }> = ({ node })
 
 function AppContent() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [locationText, setLocationText] = useState('Detecting current location...');
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const layout = useCartStore((state) => state.layout);
   const theme = useCartStore((state) => state.theme);
+  const isLoggedIn = useCartStore((state) => state.isLoggedIn);
   const setTheme = useCartStore((state) => state.setTheme);
   const { colors } = useTheme(); // Consuming colors dynamically via React Context Provider
 
@@ -261,7 +264,15 @@ function AppContent() {
               <Wallet size={16} color="#673AB7" fill="#673AB7" style={{marginRight: 4}} />
               <Text style={styles.walletText}>₹0</Text>
             </View>
-            <UserCircle2 size={26} color={colors.text} style={{marginLeft: 12, marginRight: 12}} />
+            <TouchableOpacity onPress={() => {
+              if (isLoggedIn) {
+                alert('Welcome back to Kiddo! You are already logged in.');
+              } else {
+                setIsLoginOpen(true);
+              }
+            }}>
+              <UserCircle2 size={26} color={colors.text} style={{marginLeft: 12, marginRight: 12}} />
+            </TouchableOpacity>
             <CartIndicator onPress={() => setIsCartOpen(true)} />
           </View>
         </View>
@@ -341,6 +352,9 @@ function AppContent() {
       
       {/* G. CART SCREEN MODAL */}
       <CartScreen isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      
+      {/* H. LOGIN SCREEN MODAL */}
+      <LoginScreen isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </SafeAreaView>
   );
 
