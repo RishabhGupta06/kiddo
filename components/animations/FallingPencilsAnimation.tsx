@@ -99,9 +99,9 @@ export const FallingPencilsAnimation: React.FC = () => {
   const particles = useRef(
     Array.from({ length: PARTICLE_COUNT }).map((_, index) => ({
       id: index,
-      delay: index * 400,
+      delay: index * 800,
       startX: Math.random() * (SCREEN_WIDTH - 40) + 10,
-      duration: 3500 + Math.random() * 2000,
+      duration: 7000 + Math.random() * 3000,
     }))
   ).current;
 
