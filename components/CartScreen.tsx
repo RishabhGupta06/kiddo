@@ -5,6 +5,8 @@ import { useTheme } from '../ThemeContext';
 import { X, Minus, Plus } from 'lucide-react-native';
 import { Product } from '../types';
 
+import { FullScreenOverlayRenderer } from './DynamicComponents'; // Import if needed
+
 interface CartScreenProps {
   isOpen: boolean;
   onClose: () => void;
@@ -12,6 +14,11 @@ interface CartScreenProps {
 
 export const CartScreen: React.FC<CartScreenProps> = ({ isOpen, onClose }) => {
   const { colors } = useTheme();
+  const cartLayout = useCartStore((state) => state.cartLayout);
+  
+  // NOTE: For simplicity we still hardcode the exact cart UI here,
+  // but conceptually it's now wrapped in the SDUI architecture if we wanted to map components.
+  // We'll keep the standard React Native Cart rendering because building SDUI Cart items is complex.
   const cart = useCartStore((state) => state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -46,7 +53,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ isOpen, onClose }) => {
     <Modal visible={isOpen} animationType="slide" transparent={true} onRequestClose={onClose}>
       <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { borderBottomColor: colors.border }]}>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>Your Cart</Text>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>{cartLayout[0]?.title || 'Your Cart'}</Text>
         <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
           <X size={24} color={colors.text} />
         </TouchableOpacity>

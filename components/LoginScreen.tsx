@@ -11,6 +11,9 @@ interface LoginScreenProps {
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => {
   const { colors } = useTheme();
+  const loginLayout = useCartStore((state) => state.loginLayout);
+  const loginData = loginLayout[0] || {};
+  
   const login = useCartStore(state => state.login);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +32,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => 
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
           <View style={[styles.header, { borderBottomColor: colors.border }]}>
-            <Text style={[styles.headerTitle, { color: colors.text }]}>Welcome to Kiddo</Text>
+            <Text style={[styles.headerTitle, { color: colors.text }]}>{loginData.title || 'Welcome'}</Text>
             <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
               <X size={24} color={colors.text} />
             </TouchableOpacity>
@@ -37,7 +40,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => 
 
           <View style={styles.content}>
             <Text style={[styles.subtitle, { color: colors.subtext }]}>
-              Log in to your account to save your cart and get free delivery on your first order!
+              {loginData.subtitle || 'Log in to your account'}
             </Text>
 
             <View style={styles.inputContainer}>

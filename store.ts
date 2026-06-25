@@ -22,6 +22,8 @@ interface CartState {
   theme: ThemeType;
   colors: ThemeColors;
   layout: ComponentData[];
+  cartLayout: ComponentData[];
+  loginLayout: ComponentData[];
   couponDiscount: number; // State to track coupon discounts dynamically
   isLoggedIn: boolean;
   
@@ -34,8 +36,16 @@ interface CartState {
   logout: () => void;
 }
 
+const defaultCartLayout: ComponentData[] = [
+  { type: 'CART_WIDGET', id: 'cart_main', title: 'Your Cart' }
+];
+
+const defaultLoginLayout: ComponentData[] = [
+  { type: 'LOGIN_FORM', id: 'login_main', title: 'Welcome to Kiddo', subtitle: 'Log in to your account to save your cart and get free delivery on your first order!' }
+];
+
 // Predefined mock data for each theme to show Server-Driven UI updates
-const themePayloads: Record<ThemeType, { colors: ThemeColors; layout: ComponentData[] }> = {
+const themePayloads: Record<ThemeType, { colors: ThemeColors; layout: ComponentData[]; cartLayout: ComponentData[]; loginLayout: ComponentData[] }> = {
   back_to_school: {
     colors: mockData.colors as ThemeColors,
     // Add FULL_SCREEN_OVERLAY to school campaign layout from server JSON structure
@@ -47,48 +57,23 @@ const themePayloads: Record<ThemeType, { colors: ThemeColors; layout: ComponentD
       },
       ...(mockData.layout as ComponentData[])
     ],
+    cartLayout: defaultCartLayout,
+    loginLayout: defaultLoginLayout,
   },
   summer_playhouse: {
     colors: {
       primary: '#4FC3F7',
-      background: '#E1F5FE',
+      background: '#F0F8FF',
       cardBackground: '#FFFFFF',
       text: '#01579B',
       subtext: '#0288D1',
       border: '#B3E5FC',
-      accent: '#00E5FF',
+      accent: '#29B6F6'
     },
     layout: [
-      // Dynamic overlay component in server configuration
-      {
-        type: 'FULL_SCREEN_OVERLAY',
-        id: 'overlay_summer_campaign',
-        animationUrl: 'https://assets.example.com/water_summer.json'
-      },
       {
         type: 'BANNER_HERO',
         id: 'banner_summer',
-        title: 'Baby\'s First Summer!',
-        subtitle: 'Splashing water toys and pool floats for infants.',
-        imageUrl: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&auto=format&fit=crop',
-        action: {
-          type: 'OPEN_LINK',
-          payload: {
-            url: 'https://kiddo-app.com/sales/summer-baby'
-          }
-        }
-      },
-      {
-        type: 'PRODUCT_GRID_2X2',
-        id: 'grid_water_toys',
-        title: 'Infant Water Toys 🧸',
-        products: [
-          {
-            id: "prod_baby_float",
-            name: "Shaded Infant Pool Float",
-            price: 599,
-            originalPrice: 850,
-            imageUrl: "https://images.unsplash.com/photo-1537655780520-1e392edd816a?w=400&auto=format&fit=crop",
             category: "Pool Essentials",
             action: {
               type: "ADD_TO_CART",
@@ -164,7 +149,9 @@ const themePayloads: Record<ThemeType, { colors: ThemeColors; layout: ComponentD
           }
         ]
       }
-    ]
+    ],
+    cartLayout: defaultCartLayout,
+    loginLayout: defaultLoginLayout,
   },
   mystery_gift_carnival: {
     colors: {
@@ -369,6 +356,8 @@ export const useCartStore = create<CartState>((set, get) => ({
     },
     ...(mockData.layout as ComponentData[])
   ],
+  cartLayout: defaultCartLayout,
+  loginLayout: defaultLoginLayout,
   couponDiscount: 0,
   isLoggedIn: false,
 
@@ -408,6 +397,8 @@ export const useCartStore = create<CartState>((set, get) => ({
         theme,
         colors: payload.colors,
         layout: payload.layout,
+        cartLayout: payload.cartLayout,
+        loginLayout: payload.loginLayout,
       });
     }
   },

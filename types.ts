@@ -20,7 +20,7 @@ export interface Product {
   action: Action;
 }
 
-export type ComponentType = 'BANNER_HERO' | 'PRODUCT_GRID_2X2' | 'DYNAMIC_COLLECTION' | 'FULL_SCREEN_OVERLAY' | string;
+export type ComponentType = 'BANNER_HERO' | 'PRODUCT_GRID_2X2' | 'DYNAMIC_COLLECTION' | 'FULL_SCREEN_OVERLAY' | 'LOGIN_FORM' | 'CART_WIDGET' | string;
 
 export interface ComponentData {
   type: ComponentType;
@@ -49,4 +49,6 @@ export interface ServerPayload {
   theme: ThemeType;
   colors: ThemeColors;
   layout: ComponentData[];
+  cartLayout: ComponentData[];
+  loginLayout: ComponentData[];
 }
