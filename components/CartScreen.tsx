@@ -4,7 +4,6 @@ import { useCartStore, globalAllProducts } from '../store';
 import { useTheme } from '../ThemeContext';
 import { X, Minus, Plus } from 'lucide-react-native';
 import { Product } from '../types';
-import { Product } from '../types';
 
 interface CartScreenProps {
   isOpen: boolean;
