@@ -340,7 +340,7 @@ function AppContent() {
       <FullScreenOverlayRenderer node={overlayNode} />
       
       {/* G. CART SCREEN MODAL */}
-      {isCartOpen && <CartScreen onClose={() => setIsCartOpen(false)} />}
+      <CartScreen isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </SafeAreaView>
   );
 

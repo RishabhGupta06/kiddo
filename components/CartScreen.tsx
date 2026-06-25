@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image, SafeAreaView, Modal } from 'react-native';
 import { useCartStore, globalAllProducts } from '../store';
 import { useTheme } from '../ThemeContext';
 import { X, Minus, Plus } from 'lucide-react-native';
 import { Product } from '../types';
 
 interface CartScreenProps {
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export const CartScreen: React.FC<CartScreenProps> = ({ onClose }) => {
+export const CartScreen: React.FC<CartScreenProps> = ({ isOpen, onClose }) => {
   const { colors } = useTheme();
   const cart = useCartStore((state) => state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
@@ -42,7 +43,8 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onClose }) => {
   );
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <Modal visible={isOpen} animationType="slide" transparent={true} onRequestClose={onClose}>
+      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { borderBottomColor: colors.border }]}>
         <Text style={[styles.headerTitle, { color: colors.text }]}>Your Cart</Text>
         <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
@@ -76,7 +78,8 @@ export const CartScreen: React.FC<CartScreenProps> = ({ onClose }) => {
           </View>
         </>
       )}
-    </SafeAreaView>
+      </SafeAreaView>
+    </Modal>
   );
 };
 
