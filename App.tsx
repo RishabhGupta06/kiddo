@@ -17,6 +17,7 @@ import { ComponentData } from './types';
 import { ThemeProvider, useTheme } from './ThemeContext';
 
 // Visual Components
+import { Header } from './components/Header';
 import BannerHero from './components/BannerHero';
 import ProductGrid2x2 from './components/ProductGrid2x2';
 import DynamicCollection from './components/DynamicCollection';
@@ -256,40 +257,7 @@ function AppContent() {
       <StatusBar barStyle="dark-content" />
       
       {/* A. TOP HEADER */}
-      <View style={styles.header}>
-        <View style={styles.headerTopRow}>
-          <KiddoLogo />
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <View style={styles.walletPill}>
-              <Wallet size={16} color="#673AB7" fill="#673AB7" style={{marginRight: 4}} />
-              <Text style={styles.walletText}>₹0</Text>
-            </View>
-            <TouchableOpacity onPress={() => {
-              if (isLoggedIn) {
-                alert('Welcome back to Kiddo! You are already logged in.');
-              } else {
-                setIsLoginOpen(true);
-              }
-            }}>
-              <UserCircle2 size={26} color={colors.text} style={{marginLeft: 12, marginRight: 12}} />
-            </TouchableOpacity>
-            <CartIndicator onPress={() => setIsCartOpen(true)} />
-          </View>
-        </View>
-
-        <View style={styles.deliveryInfoContainer}>
-          <View style={styles.deliveryTimeRow}>
-            <Zap size={24} color={colors.text} fill={colors.text} style={styles.zapIcon} />
-            <Text style={[styles.deliveryTimeText, { color: colors.text }]}>20 minutes</Text>
-          </View>
-          <View style={styles.deliveryAddressRow}>
-            <Text style={[styles.deliveryAddressText, { color: colors.text }]} numberOfLines={1}>
-              {locationText}
-            </Text>
-            <ChevronDown size={14} color={colors.text} style={{ marginLeft: 4 }} />
-          </View>
-        </View>
-      </View>
+      <Header onOpenLogin={() => setIsLoginOpen(true)} onOpenCart={() => setIsCartOpen(true)} />
 
       {/* B. THEME SWITCHER BAR */}
       <View style={styles.themeBar}>

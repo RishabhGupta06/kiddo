@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView, Keyb
 import { useTheme } from '../ThemeContext';
 import { useCartStore } from '../store';
 import { X, Mail, Lock } from 'lucide-react-native';
+import { Header } from './Header';
 
 interface LoginScreenProps {
   isOpen: boolean;
@@ -11,9 +12,6 @@ interface LoginScreenProps {
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => {
   const { colors } = useTheme();
-  const loginLayout = useCartStore((state) => state.loginLayout);
-  const loginData = loginLayout[0] || {};
-  
   const login = useCartStore(state => state.login);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,12 +25,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => 
   return (
     <Modal visible={isOpen} animationType="slide" transparent={true} onRequestClose={onClose}>
       <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+        <Header onOpenLogin={() => {}} onOpenCart={() => {}} />
         <KeyboardAvoidingView 
           style={styles.keyboardView} 
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
           <View style={[styles.header, { borderBottomColor: colors.border }]}>
-            <Text style={[styles.headerTitle, { color: colors.text }]}>{loginData.title || 'Welcome'}</Text>
+            <Text style={[styles.headerTitle, { color: colors.text }]}>Welcome to Kiddo</Text>
             <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
               <X size={24} color={colors.text} />
             </TouchableOpacity>
@@ -40,7 +39,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => 
 
           <View style={styles.content}>
             <Text style={[styles.subtitle, { color: colors.subtext }]}>
-              {loginData.subtitle || 'Log in to your account'}
+              Log in to your account to save your cart and get free delivery on your first order!
             </Text>
 
             <View style={styles.inputContainer}>
