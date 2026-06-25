@@ -4,7 +4,7 @@ import { useCartStore, globalAllProducts } from '../store';
 import { useTheme } from '../ThemeContext';
 import { X, Minus, Plus } from 'lucide-react-native';
 import { Product } from '../types';
-import { Header } from './Header';
+import { Product } from '../types';
 
 interface CartScreenProps {
   isOpen: boolean;
@@ -43,10 +43,10 @@ export const CartScreen: React.FC<CartScreenProps> = ({ isOpen, onClose }) => {
     </View>
   );
 
+  if (!isOpen) return null;
+
   return (
-    <Modal visible={isOpen} animationType="slide" transparent={true} onRequestClose={onClose}>
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-        <Header onOpenLogin={() => {}} onOpenCart={() => {}} />
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 100 }]}>
       <View style={[styles.header, { borderBottomColor: colors.border }]}>
         <Text style={[styles.headerTitle, { color: colors.text }]}>Your Cart</Text>
         <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
@@ -80,8 +80,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({ isOpen, onClose }) => {
           </View>
         </>
       )}
-      </SafeAreaView>
-    </Modal>
+    </SafeAreaView>
   );
 };
 
@@ -89,9 +88,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    maxWidth: Platform.OS === 'web' ? 480 : '100%',
-    alignSelf: 'center',
-    zIndex: 100,
+    height: '100%',
   },
   header: {
     flexDirection: 'row',

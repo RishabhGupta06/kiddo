@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView, Keyb
 import { useTheme } from '../ThemeContext';
 import { useCartStore } from '../store';
 import { X, Mail, Lock } from 'lucide-react-native';
-import { Header } from './Header';
 
 interface LoginScreenProps {
   isOpen: boolean;
@@ -22,14 +21,14 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => 
     onClose();
   };
 
+  if (!isOpen) return null;
+
   return (
-    <Modal visible={isOpen} animationType="slide" transparent={true} onRequestClose={onClose}>
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-        <Header onOpenLogin={() => {}} onOpenCart={() => {}} />
-        <KeyboardAvoidingView 
-          style={styles.keyboardView} 
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        >
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 100 }]}>
+      <KeyboardAvoidingView 
+        style={styles.keyboardView} 
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
           <View style={[styles.header, { borderBottomColor: colors.border }]}>
             <Text style={[styles.headerTitle, { color: colors.text }]}>Welcome to Kiddo</Text>
             <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
@@ -87,7 +86,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ isOpen, onClose }) => 
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
-    </Modal>
   );
 };
 
@@ -95,9 +93,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    maxWidth: Platform.OS === 'web' ? 480 : '100%',
-    alignSelf: 'center',
-    zIndex: 100,
+    height: '100%',
   },
   keyboardView: {
     flex: 1,
